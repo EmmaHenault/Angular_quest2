@@ -1,2 +1,23 @@
-<h1>titre</h1>
-<p>article works!</p>
+<div *ngIf="article">
+    <!-- Affichage du titre, de l'auteur et du contenu via l'interpolation -->
+    <h1>{{ article.title }}</h1>
+    <h3>Écrit par {{ article.author }}</h3>
+    <p>{{ article.content }}</p>
+  
+    <!-- Affichage de l'image via le property binding -->
+    <img [src]="article.image" alt="Image de l'article" width="350" height="150">
+  
+    <!-- Vérification si l'article est publié -->
+    <div *ngIf="article.isPublished; else notPublished">
+      <p>L'article est publié.</p>
+    </div>
+    <ng-template #notPublished>
+      <p>L'article n'est pas encore publié.</p>
+    </ng-template>
+  
+    <!-- Affichage du commentaire si présent -->
+    <div *ngIf="article.comment">
+      <p><strong>Commentaire :</strong> {{ article.comment }}</p>
+    </div>
+  </div>
+  
