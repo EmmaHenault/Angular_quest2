@@ -17,7 +17,8 @@ export class ArticleComponent {
     content: 'Voici le contenu de l\'article.',
     image: 'https://via.placeholder.com/350x150',
     isPublished: true,
-    comment: ''
+    comment: '',
+    likes: 100
   };
 
   togglePublication(): void {

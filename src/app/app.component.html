@@ -1,1 +1,25 @@
-<app-article></app-article>
+<div *ngIf="articles.length > 0; else noArticles">
+  <div *ngFor="let article of articles">
+    <!-- Vérifie si l'article est publié avant de l'afficher -->
+    <div *ngIf="article.isPublished">
+      <!-- Appliquer la classe 'popular-article' si l'article a plus de 100 likes -->
+      <h2 [ngClass]="{ 'popular-article': article.likes > 100 }"
+          [ngStyle]="{ 'color': article.likes > 150 ? 'green' : 'black' }">
+        {{ article.title }}
+      </h2>
+      <h4>Écrit par {{ article.author }}</h4>
+      <img [src]="article.image" alt="Image de l'article" width="350" height="150">
+      <p>{{ article.content }}</p>
+      <p><strong>Likes:</strong> {{ article.likes }}</p>
+
+      <div *ngIf="article.comment">
+        <p><strong>Commentaire:</strong> {{ article.comment }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Template pour afficher un message si aucun article n'est publié -->
+<ng-template #noArticles>
+  <p>Aucun article publié pour le moment.</p>
+</ng-template>
